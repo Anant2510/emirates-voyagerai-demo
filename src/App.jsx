@@ -192,35 +192,123 @@ const STEPS = [
 
 /* ═══ S1: THE PROBLEM ═══ */
 function S1({ onNext, add }) {
+  const [phase, setPhase] = useState(0);
+
   useEffect(() => {
-    add({ type: "CONTEXT", detail: "Emirates has 4M+ Skywards members. 68% never upgrade from Economy. VoyagerAI identifies and converts them at 78% lower CAC.", color: E.red, domain: "emirates", time: "Business Context" });
+    add({ type: "CONTEXT", detail: "Emirates has 4.2M Skywards members. 2.3M show Business Class propensity > 70%. VoyagerAI identifies & converts them at 78% lower CAC.", color: E.red, domain: "emirates", time: "Business Context" });
+    const t = [
+      setTimeout(() => setPhase(1), 400),
+      setTimeout(() => setPhase(2), 1300),
+      setTimeout(() => setPhase(3), 2200),
+      setTimeout(() => setPhase(4), 3200),
+    ];
+    return () => t.forEach(clearTimeout);
   }, []);
+
   return (
     <div>
-      <DayBanner day="The Problem" desc="Emirates is sitting on a goldmine of hidden high-value passengers" color={E.red}
-        sub="Millions of economy loyalists have the income and intent to fly Business Class. Emirates has no system to find them, score them, and convert them at low cost — before competitors do." />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
-        {[
-          ["😴 Invisible High-Value Passengers", `Aisha has flown Emirates 4 times in economy. Her Skywards file shows AED 12,000 lifetime spend. Emirates has NO idea she has a career-defining pitch in London on 18 March — and is actively researching Business Class for the flight that gets her there. She is 89% likely to book in the next 9 days. Emirates can't see it.`, E.red],
-          ["💸 Wasted Acquisition Spend", "Emirates spends AED 1,400 per acquired Business Class customer via generic digital campaigns — targeting everyone, converting few. CAC is high because targeting is completely blind to intent and context.", E.amber],
-          ["🔗 Disconnected Data Silos", "Sabre PSS holds booking history. CRM has loyalty points. B2B enrichment APIs (Clearbit, ZoomInfo) know her firm and role. News monitors track public mandate announcements. The website sees live intent. None of these systems talk to each other in real time. Emirates cannot see who Aisha is — or what she is about to spend.", E.purple],
-          ["⏱️ Slow to Act on Intent", "When Aisha spent 4 minutes on the Business Class cabin page this morning, Emirates had hours to reach her before she compared prices on Google and considered Qatar Airways. Nobody knew. Nobody acted.", E.teal],
-        ].map(([t, d, c]) => (
-          <div key={t} style={{ background: `${c}08`, border: `1.5px solid ${c}28`, borderRadius: 12, padding: 14 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: c, fontFamily: "Cinzel, serif", marginBottom: 6 }}>{t}</div>
-            <div style={{ fontSize: 11, color: E.slate, lineHeight: 1.6 }}>{d}</div>
-          </div>
-        ))}
-      </div>
-      <Glass style={{ padding: 18, marginBottom: 14 }} highlight>
-        <div style={{ fontSize: 13, fontWeight: 700, color: E.ink, fontFamily: "Cinzel, serif", marginBottom: 10 }}>The Opportunity VoyagerAI Unlocks for Emirates</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10 }}>
-          {[["Economy loyalists ready to upgrade", "2.3M passengers", E.gold], ["Average Business Class LTV", "AED 280,000+", E.green], ["CAC reduction with VoyagerAI", "78% lower", E.teal]].map(([l, v, c]) => (
-            <div key={l} style={{ textAlign: "center", padding: 12, background: E.snow, borderRadius: 10, border: `1px solid ${E.mist}` }}>
-              <div style={{ fontSize: 20, fontWeight: 800, color: c, fontFamily: "Cinzel, serif" }}>{v}</div>
-              <div style={{ fontSize: 9.5, color: E.mid, marginTop: 4, lineHeight: 1.4 }}>{l}</div>
+      <DayBanner day="The Problem" desc="Emirates is sitting on millions of hidden Business Class passengers — and can't see any of them" color={E.red} />
+
+      <Glass style={{ padding: "18px 22px 20px", marginBottom: 14, position: "relative", overflow: "hidden" }} highlight>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: E.gold, animation: "blink2 1.5s ease infinite" }} />
+          <div style={{ fontSize: 9, fontFamily: "JBM", color: E.goldDark, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2 }}>The Hidden Funnel — From 4.2M Members to One Booking Today</div>
+        </div>
+
+        <svg viewBox="0 0 720 340" style={{ width: "100%", height: "auto", maxHeight: 380 }}>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={E.charcoal} />
+              <stop offset="100%" stopColor={E.slate} />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={E.slate} />
+              <stop offset="100%" stopColor={E.mid} />
+            </linearGradient>
+            <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={E.gold} />
+              <stop offset="100%" stopColor={E.goldDark} />
+            </linearGradient>
+            <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={E.green} />
+              <stop offset="100%" stopColor="#0F5C2D" />
+            </linearGradient>
+          </defs>
+
+          {/* Layer 1 — All Skywards Members */}
+          <g style={{ opacity: phase >= 1 ? 1 : 0, transform: phase >= 1 ? "translateY(0)" : "translateY(-8px)", transition: "all .6s cubic-bezier(.16,1,.3,1)" }}>
+            <rect x="20" y="15" width="680" height="58" rx="10" fill="url(#g1)" />
+            <text x="40" y="38" fill={E.goldLight} fontSize="9" fontFamily="JetBrains Mono" fontWeight="700" letterSpacing="2">SKYWARDS MEMBERS · PUBLIC FIGURE</text>
+            <text x="40" y="61" fill="#fff" fontSize="22" fontFamily="Cinzel, serif" fontWeight="700">37,000,000</text>
+            <text x="680" y="36" textAnchor="end" fill="rgba(255,255,255,.55)" fontSize="9" fontFamily="JetBrains Mono">Emirates broadcasts to all</text>
+            <text x="680" y="55" textAnchor="end" fill="rgba(255,255,255,.4)" fontSize="9" fontFamily="JetBrains Mono">— one bucket, one strategy</text>
+            <text x="680" y="68" textAnchor="end" fill={E.redSoft} fontSize="9" fontFamily="JetBrains Mono" fontWeight="700">Industry CAC: AED 1,000–1,500</text>
+          </g>
+
+          {/* Connector 1→2 */}
+          <g style={{ opacity: phase >= 2 ? 0.4 : 0, transition: "opacity .8s ease" }}>
+            <line x1="50" y1="73" x2="120" y2="93" stroke={E.gold} strokeWidth="1" strokeDasharray="3,3" />
+            <line x1="670" y1="73" x2="600" y2="93" stroke={E.gold} strokeWidth="1" strokeDasharray="3,3" />
+          </g>
+
+          {/* Layer 2 — Active high-propensity (illustrative subset) */}
+          <g style={{ opacity: phase >= 2 ? 1 : 0, transform: phase >= 2 ? "translateY(0)" : "translateY(-8px)", transition: "all .6s cubic-bezier(.16,1,.3,1)" }}>
+            <rect x="120" y="93" width="480" height="55" rx="10" fill="url(#g2)" />
+            <text x="140" y="115" fill={E.goldLight} fontSize="9" fontFamily="JetBrains Mono" fontWeight="700" letterSpacing="2">ACTIVE · HIGH BUSINESS CLASS PROPENSITY</text>
+            <text x="140" y="137" fill="#fff" fontSize="20" fontFamily="Cinzel, serif" fontWeight="700">~2.3M (illustrative)</text>
+            <text x="580" y="113" textAnchor="end" fill="rgba(255,255,255,.55)" fontSize="9" fontFamily="JetBrains Mono">Income · job · travel pattern signals</text>
+            <text x="580" y="130" textAnchor="end" fill="rgba(255,255,255,.4)" fontSize="9" fontFamily="JetBrains Mono">— invisible without VoyagerAI</text>
+          </g>
+
+          {/* Connector 2→3 */}
+          <g style={{ opacity: phase >= 3 ? 0.4 : 0, transition: "opacity .8s ease" }}>
+            <line x1="150" y1="148" x2="210" y2="168" stroke={E.gold} strokeWidth="1" strokeDasharray="3,3" />
+            <line x1="570" y1="148" x2="510" y2="168" stroke={E.gold} strokeWidth="1" strokeDasharray="3,3" />
+          </g>
+
+          {/* Layer 3 — Imminent intent */}
+          <g style={{ opacity: phase >= 3 ? 1 : 0, transform: phase >= 3 ? "translateY(0)" : "translateY(-8px)", transition: "all .6s cubic-bezier(.16,1,.3,1)" }}>
+            <rect x="210" y="168" width="300" height="55" rx="10" fill="url(#g3)" />
+            <text x="230" y="190" fill={E.charcoal} fontSize="9" fontFamily="JetBrains Mono" fontWeight="700" letterSpacing="2">RESEARCHING THIS WEEK</text>
+            <text x="230" y="212" fill={E.charcoal} fontSize="20" fontFamily="Cinzel, serif" fontWeight="700">~12,400</text>
+            <text x="490" y="188" textAnchor="end" fill="rgba(0,0,0,.65)" fontSize="9" fontFamily="JetBrains Mono">9-day conversion window</text>
+            <text x="490" y="205" textAnchor="end" fill="rgba(0,0,0,.5)" fontSize="9" fontFamily="JetBrains Mono">— competitors closing in</text>
+          </g>
+
+          {/* Connector 3→4 */}
+          <g style={{ opacity: phase >= 4 ? 0.6 : 0, transition: "opacity .8s ease" }}>
+            <line x1="240" y1="223" x2="290" y2="248" stroke={E.green} strokeWidth="1.5" strokeDasharray="3,3" />
+            <line x1="480" y1="223" x2="430" y2="248" stroke={E.green} strokeWidth="1.5" strokeDasharray="3,3" />
+          </g>
+
+          {/* Layer 4 — Aisha */}
+          <g style={{ opacity: phase >= 4 ? 1 : 0, transform: phase >= 4 ? "translateY(0)" : "translateY(-8px)", transition: "all .8s cubic-bezier(.16,1,.3,1)" }}>
+            <rect x="290" y="248" width="140" height="78" rx="10" fill="url(#g4)" stroke={E.green} strokeWidth="2" />
+            <text x="360" y="268" textAnchor="middle" fill="rgba(255,255,255,.85)" fontSize="8.5" fontFamily="JetBrains Mono" fontWeight="700" letterSpacing="2">ONE PASSENGER · TODAY</text>
+            <text x="360" y="289" textAnchor="middle" fill="#fff" fontSize="14" fontFamily="Cinzel, serif" fontWeight="700">Aisha Al-Rashidi</text>
+            <text x="360" y="305" textAnchor="middle" fill="rgba(255,255,255,.85)" fontSize="9" fontFamily="JetBrains Mono">89% propensity</text>
+            <text x="360" y="318" textAnchor="middle" fill={E.goldLight} fontSize="9" fontFamily="JetBrains Mono" fontWeight="700">AED 280K LTV signal</text>
+
+            {/* Annotation arrow */}
+            <line x1="440" y1="287" x2="500" y2="287" stroke={E.green} strokeWidth="1.5" />
+            <polygon points="500,283 510,287 500,291" fill={E.green} />
+            <text x="520" y="284" fill={E.green} fontSize="10" fontFamily="JetBrains Mono" fontWeight="700">Today's case study</text>
+            <text x="520" y="297" fill={E.mid} fontSize="8.5" fontFamily="JetBrains Mono">Watch VoyagerAI find,</text>
+            <text x="520" y="308" fill={E.mid} fontSize="8.5" fontFamily="JetBrains Mono">score &amp; convert her</text>
+          </g>
+        </svg>
+
+        <div style={{ marginTop: 8, padding: "11px 14px", background: E.snow, borderRadius: 8, border: `1px solid ${E.mist}`, display: "flex", gap: 12, alignItems: "flex-start" }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 11.5, color: E.slate, lineHeight: 1.6 }}>
+              <strong style={{ color: E.red }}>Today's industry CAC for premium B2B travel acquisition: ~AED 1,000–1,500.</strong> VoyagerAI's targeting collapses this by serving only the in-market segment with personalised creative. <strong style={{ color: E.green }}>Etihad Airways' published RLSA case study reduced CPA by 60% on a similar audience strategy.</strong>
             </div>
-          ))}
+          </div>
+          <div style={{ fontSize: 8, fontFamily: "JBM", color: E.pale, textAlign: "right", whiteSpace: "nowrap", flexShrink: 0, paddingTop: 2 }}>
+            <div>Skywards: 37M (Emirates official)</div>
+            <div>CAC: First Page Sage benchmark</div>
+            <div>RLSA: AdWords Robot case study</div>
+          </div>
         </div>
       </Glass>
       <div style={{ background: `linear-gradient(135deg, ${E.charcoal}, #1A0820)`, borderRadius: 14, padding: "18px 20px", marginBottom: 14 }}>
@@ -231,7 +319,7 @@ function S1({ onNext, add }) {
             <div style={{ fontSize: 16, fontWeight: 700, color: E.white, fontFamily: "Cinzel, serif" }}>{TRAVELLER.name}</div>
             <div style={{ fontSize: 11, color: E.goldLight, marginTop: 2 }}>{TRAVELLER.job}</div>
             <div style={{ fontSize: 11, color: "rgba(255,255,255,.55)", marginTop: 6, lineHeight: 1.65 }}>
-              <strong style={{ color: "rgba(255,255,255,.85)" }}>18 November 2024.</strong> EK001 economy, seat 47B. 90 minutes of fragmented sleep on a 30° recline. Heathrow immigration took 52 minutes — no fast-track. She reached her hotel at 09:18. The pitch was at 10:00. She walked into the Clifford Chance boardroom at 10:07 — late, voice hoarse, suit creased, eyes red. The other side looked rested. <strong style={{ color: "#ff9999" }}>The £2M instruction went to Clifford Chance.</strong> Her managing partner the next morning: <em style={{ color: "rgba(255,255,255,.4)" }}>"You weren't at your best."</em>
+              <strong style={{ color: "rgba(255,255,255,.85)" }}>18 November 2024.</strong> EK007 economy, seat 47B. 90 minutes of fragmented sleep on a 30° recline. Heathrow immigration took 52 minutes — no fast-track. She reached her hotel at 09:18. The pitch was at 10:00. She walked into the Clifford Chance boardroom at 10:07 — late, voice hoarse, suit creased, eyes red. The other side looked rested. <strong style={{ color: "#ff9999" }}>The £2M instruction went to Clifford Chance.</strong> Her managing partner the next morning: <em style={{ color: "rgba(255,255,255,.4)" }}>"You weren't at your best."</em>
               <br /><br />
               <strong style={{ color: "rgba(255,255,255,.85)" }}>On 18 March 2026 she has another pitch in London</strong> — Apex Capital, a client her firm just won. She flies out 14 March. The firm will reimburse Business Class. She refuses to lose another mandate to exhaustion. Today she is on emirates.com researching that one critical flight — and Emirates has no idea who she is, or what converting her unlocks.
             </div>
@@ -746,32 +834,110 @@ function S7({ onNext, add }) {
 function S8({ onNext, add }) {
   useEffect(() => {
     add({ type: "JOURNEY_STARTED", detail: "Aisha enters: corporate_upgrade_nurture_v2 · 9-day journey · 5 channels · Zero overkill logic active", color: E.amber, domain: "jo", time: "Day 0 · EOD" });
-    add({ type: "GENAI_CONTENT", detail: "8 personalised content variants generated in 0.3 seconds: name + route + Apex Capital pitch context + meal pref + arrive-rested hook + Skywards Silver path + lie-flat overnight + urgency", color: E.gold, domain: "cdp", time: "Day 0 · EOD" });
+    add({ type: "GENAI_CONTENT", detail: "8 personalised content variants generated in 0.3 seconds: name + route + Apex Capital pitch context + arrive-rested hook + Skywards Silver path + lie-flat overnight + urgency", color: E.gold, domain: "cdp", time: "Day 0 · EOD" });
   }, []);
-  const journey = [
-    { day: "Day 0", ev: "Form fill → PSS enrich (4.1s) → identity stitched → RLSA + LinkedIn + Instagram audiences live", d: "cdp", done: true },
-    { day: "Day 0", ev: "GenAI authors 8 personalised content variants for all channels in 0.3 seconds", d: "cdp", done: true },
-    { day: "Day 1–2", ev: "Google RLSA + LinkedIn sponsored content fire — 'Big pitch in London? Arrive Ready.' Personalised, Aisha only.", d: "google", done: false },
-    { day: "Day 3", ev: "📧 Email #1: 'Aisha, your DXB→LHR Business Class seat awaits' — lie-flat, Apex pitch context, sleep-focused", d: "email", done: false },
-    { day: "Day 6", ev: "📱 Instagram: cinematic Business Class creative · 💬 SMS: 72hr corporate rate seat hold for 14 March", d: "social", done: false },
-    { day: "Day 9", ev: "📧 Email #2: Urgency — 'Only 2 seats left on EK007 · 14 March · hold expires today at 1pm.'", d: "email", done: false },
-    { day: "Day 9", ev: "Aisha books the 14 March flight → ALL channels suppressed · Post-booking journey begins", d: "jo", done: false },
+
+  // Each touchpoint: day, channel domain, label, type
+  const touchpoints = [
+    { day: 0,   ch: "cdp",    label: "Identity stitched · audiences live",     icon: "⚡", lane: 0, status: "done" },
+    { day: 1.5, ch: "google", label: "RLSA + LinkedIn ads",                    icon: "🎯", lane: 1, status: "next" },
+    { day: 3,   ch: "email",  label: "Email #1 · arrive-ready",                icon: "📧", lane: 2, status: "queued" },
+    { day: 6,   ch: "social", label: "Instagram visual",                       icon: "📱", lane: 3, status: "queued" },
+    { day: 6.2, ch: "sms",    label: "SMS · 72h seat hold",                    icon: "💬", lane: 4, status: "queued" },
+    { day: 9,   ch: "email",  label: "Email #2 · urgency",                     icon: "📧", lane: 2, status: "queued" },
+    { day: 9.1, ch: "emirates", label: "Booked → all channels suppressed",     icon: "✓", lane: 5, status: "goal" },
   ];
+  const lanes = [
+    { d: "cdp",      label: "VoyagerAI CDP" },
+    { d: "google",   label: "Google + LinkedIn" },
+    { d: "email",    label: "Email" },
+    { d: "social",   label: "Instagram" },
+    { d: "sms",      label: "SMS" },
+    { d: "emirates", label: "Conversion" },
+  ];
+
+  // Helpers: x position from day (0..9 -> 80..680)
+  const xFromDay = (d) => 80 + (d / 9) * 600;
+
   return (
     <div>
-      <DayBanner day="Journey Plan" desc="A 9-day, 5-channel orchestrated journey — every message timed and contextual" color={E.amber}
-        sub="If Aisha converts on Day 3, Days 6 and 9 never fire. Zero overkill, zero wasted spend. VoyagerAI stops the moment the job is done — no stalker retargeting." />
-      <Glass style={{ padding: 18, marginBottom: 14 }} highlight>
-        <div style={{ fontSize: 10, fontFamily: "JBM", color: E.goldDark, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 14 }}>Orchestrated Journey — {TRAVELLER.name}</div>
-        {journey.map((j, i) => (
-          <div key={i} style={{ display: "flex", gap: 10, marginBottom: 9, alignItems: "flex-start", animation: "slideUp .3s cubic-bezier(.16,1,.3,1) both", animationDelay: `${i * .06}s` }}>
-            <div style={{ minWidth: 52, fontSize: 8.5, color: E.pale, fontFamily: "JBM", paddingTop: 2 }}>{j.day}</div>
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: j.done ? E.green : E.gold, flexShrink: 0, marginTop: 3, boxShadow: `0 0 6px ${j.done ? E.green : E.gold}60` }} />
-            <div style={{ flex: 1, fontSize: 11, color: E.slate, lineHeight: 1.5 }}>{j.ev}</div>
-            <DBadge domain={j.d} />
-          </div>
-        ))}
+      <DayBanner day="Journey Plan" desc="A 9-day, 5-channel orchestrated journey — every touchpoint timed and contextual" color={E.amber}
+        sub="If Aisha converts on Day 3, Days 6 and 9 never fire. Zero overkill, zero wasted spend. VoyagerAI stops the moment the job is done." />
+
+      {/* GANTT-STYLE TIMELINE VISUALIZATION */}
+      <Glass style={{ padding: "16px 18px 14px", marginBottom: 14 }} highlight>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: E.amber, animation: "blink2 1.5s ease infinite" }} />
+          <div style={{ fontSize: 9, fontFamily: "JBM", color: E.goldDark, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2 }}>Orchestrated Journey · {TRAVELLER.name} · 9-Day Multi-Channel Plan</div>
+        </div>
+
+        <svg viewBox="0 0 720 250" style={{ width: "100%", height: "auto" }}>
+          <defs>
+            <linearGradient id="laneBg" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor={E.snow} stopOpacity="0" />
+              <stop offset="50%" stopColor={E.snow} stopOpacity="1" />
+              <stop offset="100%" stopColor={E.snow} stopOpacity="0" />
+            </linearGradient>
+          </defs>
+
+          {/* Day axis grid */}
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(d => (
+            <g key={d}>
+              <line x1={xFromDay(d)} y1="22" x2={xFromDay(d)} y2="220" stroke={E.mist} strokeWidth="1" strokeDasharray={d % 3 === 0 ? "0" : "2,3"} opacity={d % 3 === 0 ? .8 : .4} />
+              <text x={xFromDay(d)} y="14" textAnchor="middle" fontSize="9" fontFamily="JetBrains Mono" fontWeight="700" fill={d % 3 === 0 ? E.goldDark : E.pale}>D{d}</text>
+            </g>
+          ))}
+
+          {/* Lanes */}
+          {lanes.map((ln, i) => {
+            const y = 32 + i * 32;
+            const dom = DOMAIN[ln.d];
+            return (
+              <g key={ln.d}>
+                <rect x="0" y={y - 14} width="720" height="26" fill={i % 2 === 0 ? E.snow : "#fff"} opacity=".6" />
+                <text x="6" y={y + 1} fontSize="9" fontFamily="JetBrains Mono" fontWeight="700" fill={dom.color}>{dom.icon} {ln.label}</text>
+                <line x1="76" y1={y} x2="700" y2={y} stroke={E.mist} strokeWidth="1" />
+              </g>
+            );
+          })}
+
+          {/* Connecting flow line through all touchpoints */}
+          <path 
+            d={touchpoints.map((t, i) => `${i === 0 ? "M" : "L"} ${xFromDay(t.day)} ${32 + t.lane * 32}`).join(" ")}
+            fill="none" stroke={E.gold} strokeWidth="2" strokeDasharray="4,4" opacity=".4"
+          />
+
+          {/* Touchpoints */}
+          {touchpoints.map((t, i) => {
+            const x = xFromDay(t.day);
+            const y = 32 + t.lane * 32;
+            const dom = DOMAIN[t.ch];
+            const isGoal = t.status === "goal";
+            const isDone = t.status === "done";
+            return (
+              <g key={i} style={{ animation: `slideUp .4s cubic-bezier(.16,1,.3,1) both`, animationDelay: `${i * .15}s` }}>
+                {/* Pulse ring for goal */}
+                {isGoal && <circle cx={x} cy={y} r="14" fill="none" stroke={E.green} strokeWidth="1.5" opacity=".4">
+                  <animate attributeName="r" from="10" to="22" dur="1.5s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" from=".5" to="0" dur="1.5s" repeatCount="indefinite" />
+                </circle>}
+
+                {/* Marker */}
+                <circle cx={x} cy={y} r={isGoal ? 11 : 9} fill={isGoal ? E.green : isDone ? E.gold : "#fff"} stroke={dom.color} strokeWidth="2" />
+                <text x={x} y={y + 4} textAnchor="middle" fontSize={isGoal ? "11" : "10"}>{t.icon}</text>
+
+                {/* Label */}
+                <rect x={x + 13} y={y - 9} rx="4" width={t.label.length * 5.5 + 12} height="18" fill={isGoal ? E.green : "#fff"} stroke={isGoal ? E.green : dom.color} strokeWidth="1" opacity={isGoal ? 1 : .92} />
+                <text x={x + 19} y={y + 3} fontSize="8.5" fontFamily="JetBrains Mono" fontWeight="600" fill={isGoal ? "#fff" : E.charcoal}>{t.label}</text>
+              </g>
+            );
+          })}
+
+          {/* Footer: zero-overkill rule */}
+          <text x="360" y="240" textAnchor="middle" fontSize="9" fontFamily="JetBrains Mono" fontStyle="italic" fill={E.mid}>If Aisha converts at any touchpoint → all subsequent channels suppressed automatically</text>
+        </svg>
       </Glass>
+
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 8, marginBottom: 14 }}>
         {[["Channels", "5", E.gold], ["AI Variants", "8", E.purple], ["Journey Days", "9", E.teal], ["Zero Overkill", "✓", E.green]].map(([l, v, c]) => (
           <Glass key={l} style={{ padding: 12, textAlign: "center" }}>
@@ -916,7 +1082,7 @@ function SRLSA({ onNext, add }) {
 function S9({ onNext, add }) {
   useEffect(() => {
     add({ type: "EMAIL_SENT", detail: "Email #1: 'Aisha, arrive ready for your Apex Capital pitch — Business Class, 14 March' · GenAI authored · 8 personalised signals · 08:00 AM", color: E.purple, domain: "email", time: "Day 3 · 08:00 AM" });
-    setTimeout(() => add({ type: "EMAIL_OPEN", detail: "Opened · 08:47 AM · Dubai · iPhone 15 · Open rate: 74% (vs 22% industry avg) · No click — reviewing on mobile", color: E.purple, domain: "email", time: "Day 3 · 08:47 AM" }), 1800);
+    setTimeout(() => add({ type: "EMAIL_OPEN", detail: "Opened · 08:47 AM · Dubai · iPhone 15 · Open rate: 56% (top quartile for triggered emails · travel industry avg 22-30% per MailerLite 2025) · No click", color: E.purple, domain: "email", time: "Day 3 · 08:47 AM" }), 1800);
     setTimeout(() => add({ type: "NO_CLICK", detail: "Open but no click. JO inference: decision-stage review, likely to act at desktop. Day 6 escalation queued: Instagram + SMS seat hold for 14 March.", color: E.amber, domain: "jo", time: "Day 3 · 08:47 AM" }), 3400);
   }, []);
   return (
@@ -924,7 +1090,7 @@ function S9({ onNext, add }) {
       <DayBanner day="Day 3 · 08:00 AM" desc="GenAI writes Aisha a 1:1 email — speaking directly to the pitch she cannot afford to lose" color={E.purple}
         sub="Every detail earns its place: her name, the DXB→LHR route, the 14 March flight date, the Apex Capital pitch on 18 March, lie-flat sleep, and the Skywards Silver path. GenAI generates this in 0.3 seconds from 8 personal data signals." />
       <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-        <TZone domain="email" active note="GenAI authored"><span style={{ fontSize: 10, color: E.slate }}>8 personalised signals · 60% faster than manual authoring · Open rate 74% vs 22% avg</span></TZone>
+        <TZone domain="email" active note="GenAI authored"><span style={{ fontSize: 10, color: E.slate }}>8 personalised signals · Triggered email open ~56% (travel industry avg 22-30%) · GenAI 60% faster than manual</span></TZone>
         <TZone domain="jo" active note="Open, no click"><span style={{ fontSize: 10, color: E.slate }}>JO detects mobile open → queues Instagram visual + SMS seat hold for 14 March</span></TZone>
       </div>
       <Chrome url={`Gmail · ${TRAVELLER.email}`}>
@@ -1195,6 +1361,37 @@ function S12({ add }) {
           ))}
         </div>
       </div>
+      <Glass style={{ padding: "14px 18px", marginBottom: 14 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+          <div style={{ fontSize: 14 }}>📊</div>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: E.ink, fontFamily: "Cinzel, serif" }}>Methodology &amp; Data Sources</div>
+            <div style={{ fontSize: 9, color: E.mid, fontFamily: "JBM" }}>Every claim in this demo, audited and sourced</div>
+          </div>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, fontSize: 10, color: E.slate, lineHeight: 1.55 }}>
+          <div>
+            <div style={{ fontSize: 8.5, fontFamily: "JBM", fontWeight: 700, color: E.green, marginBottom: 4, textTransform: "uppercase", letterSpacing: 1 }}>✓ Verified Public Data</div>
+            <div>• Skywards 37M members — Emirates official (2025)</div>
+            <div>• EK007 schedule DXB→LHR — Emirates timetable</div>
+            <div>• Travel email open rate 22-30% — MailerLite 2025</div>
+            <div>• RLSA 60% CPA reduction — Etihad Airways case study</div>
+            <div>• Sabre PSS, Clearbit, ZoomInfo, Bombora — production-grade APIs</div>
+          </div>
+          <div>
+            <div style={{ fontSize: 8.5, fontFamily: "JBM", fontWeight: 700, color: E.amber, marginBottom: 4, textTransform: "uppercase", letterSpacing: 1 }}>⚠ Illustrative · For Demo</div>
+            <div>• Aisha Al-Rashidi — fictional persona</div>
+            <div>• Apex Capital mandate, propensity 89%, AED 280K LTV — illustrative</div>
+            <div>• 12,400 weekly in-market — illustrative segment sizing</div>
+            <div>• AED 1,000–1,500 industry CAC range from First Page Sage benchmark</div>
+            <div>• AED 310 VoyagerAI CAC — modelled outcome based on 60-78% reduction range</div>
+          </div>
+        </div>
+        <div style={{ marginTop: 10, padding: "8px 11px", background: E.snow, borderRadius: 8, border: `1px dashed ${E.mist}` }}>
+          <div style={{ fontSize: 9.5, color: E.mid, lineHeight: 1.55 }}><strong style={{ color: E.slate }}>Pre-pilot calibration:</strong> All illustrative figures must be validated against Emirates' actual Skywards segmentation, historical CAC, and PSS data before any production deployment. This demo shows the architectural pattern and expected order-of-magnitude impact, not Emirates-specific numbers.</div>
+        </div>
+      </Glass>
+
       <div style={{ background: `linear-gradient(135deg, ${E.charcoal}, ${E.redDark})`, borderRadius: 16, padding: "22px 24px", textAlign: "center" }}>
         <div style={{ fontSize: 9, fontFamily: "JBM", color: E.goldLight, letterSpacing: 2, marginBottom: 8, textTransform: "uppercase" }}>Powered by VoyagerAI · Coforge</div>
         <div style={{ fontSize: 17, fontWeight: 700, color: E.white, fontFamily: "Cinzel, serif", marginBottom: 5 }}>✈️ Economy Loyalist → Business Class Booker · 9 Days · 78% Lower CAC · AED 280K+ LTV Unlocked</div>
