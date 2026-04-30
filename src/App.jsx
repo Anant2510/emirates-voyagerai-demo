@@ -65,7 +65,7 @@ const TRAVELLER = {
   route: "DXB → LHR", cabin: "Business Class",
   pricePerTrip: "AED 18,500",
   ltv: "AED 280,000+",
-  propensity: 89, ancillaryScore: 91, mealPref: "Halal",
+  propensity: 89, ancillaryScore: 91, mealPref: "Vegetarian",
   cacTraditional: "AED 1,400", cacVoyager: "AED 310",
   immediateRoi: "60x",
   lifetimeRoi: "904x",
@@ -203,7 +203,7 @@ function S1({ onNext, add }) {
         {[
           ["😴 Invisible High-Value Passengers", `Aisha has flown Emirates 4 times in economy. Her Skywards file shows AED 12,000 lifetime spend. Emirates has NO idea she has a career-defining pitch in London on 18 March — and is actively researching Business Class for the flight that gets her there. She is 89% likely to book in the next 9 days. Emirates can't see it.`, E.red],
           ["💸 Wasted Acquisition Spend", "Emirates spends AED 1,400 per acquired Business Class customer via generic digital campaigns — targeting everyone, converting few. CAC is high because targeting is completely blind to intent and context.", E.amber],
-          ["🔗 Disconnected Data Silos", "Sabre PSS holds booking history. CRM has loyalty points. The website has live browsing intent. None of these systems talk to each other in real time. Emirates cannot see the whole picture of who Aisha is — or what she is about to spend.", E.purple],
+          ["🔗 Disconnected Data Silos", "Sabre PSS holds booking history. CRM has loyalty points. B2B enrichment APIs (Clearbit, ZoomInfo) know her firm and role. News monitors track public mandate announcements. The website sees live intent. None of these systems talk to each other in real time. Emirates cannot see who Aisha is — or what she is about to spend.", E.purple],
           ["⏱️ Slow to Act on Intent", "When Aisha spent 4 minutes on the Business Class cabin page this morning, Emirates had hours to reach her before she compared prices on Google and considered Qatar Airways. Nobody knew. Nobody acted.", E.teal],
         ].map(([t, d, c]) => (
           <div key={t} style={{ background: `${c}08`, border: `1.5px solid ${c}28`, borderRadius: 12, padding: 14 }}>
@@ -231,9 +231,9 @@ function S1({ onNext, add }) {
             <div style={{ fontSize: 16, fontWeight: 700, color: E.white, fontFamily: "Cinzel, serif" }}>{TRAVELLER.name}</div>
             <div style={{ fontSize: 11, color: E.goldLight, marginTop: 2 }}>{TRAVELLER.job}</div>
             <div style={{ fontSize: 11, color: "rgba(255,255,255,.55)", marginTop: 6, lineHeight: 1.65 }}>
-              Six months ago she flew economy DXB→LHR for a major pitch. She arrived exhausted after a 7-hour red-eye, stumbled through the opening, and <strong style={{ color: "#ff9999" }}>lost a £2M instruction to Clifford Chance</strong>. Her managing partner's debrief: <em style={{ color: "rgba(255,255,255,.4)" }}>"You weren't at your best."</em>
+              <strong style={{ color: "rgba(255,255,255,.85)" }}>18 November 2024.</strong> EK001 economy, seat 47B. 90 minutes of fragmented sleep on a 30° recline. Heathrow immigration took 52 minutes — no fast-track. She reached her hotel at 09:18. The pitch was at 10:00. She walked into the Clifford Chance boardroom at 10:07 — late, voice hoarse, suit creased, eyes red. The other side looked rested. <strong style={{ color: "#ff9999" }}>The £2M instruction went to Clifford Chance.</strong> Her managing partner the next morning: <em style={{ color: "rgba(255,255,255,.4)" }}>"You weren't at your best."</em>
               <br /><br />
-              <strong style={{ color: "rgba(255,255,255,.85)" }}>On 18 March 2026 she has another pitch in London</strong> — for Apex Capital, a client her firm just won. She flies out 14 March. The firm will reimburse Business Class. She refuses to lose another mandate to exhaustion. Today she is on emirates.com researching that one critical flight — and Emirates has no idea who she is, or what converting her unlocks.
+              <strong style={{ color: "rgba(255,255,255,.85)" }}>On 18 March 2026 she has another pitch in London</strong> — Apex Capital, a client her firm just won. She flies out 14 March. The firm will reimburse Business Class. She refuses to lose another mandate to exhaustion. Today she is on emirates.com researching that one critical flight — and Emirates has no idea who she is, or what converting her unlocks.
             </div>
             <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
               <Tag color={E.gold}>Skywards Blue · 4 Economy Flights</Tag>
@@ -243,6 +243,46 @@ function S1({ onNext, add }) {
           </div>
         </div>
       </div>
+
+      <div style={{ background: "#fff", border: `1.5px solid ${E.mist}`, borderRadius: 14, padding: "16px 18px", marginBottom: 14 }}>
+        <div style={{ fontSize: 9, fontFamily: "JBM", color: E.mid, letterSpacing: 2, marginBottom: 10, textTransform: "uppercase", fontWeight: 700 }}>The Two Days Side by Side — Why She Will Pay the Premium</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+          <div style={{ background: E.redSoft, border: `1.5px solid ${E.red}30`, borderRadius: 10, padding: "12px 14px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+              <span style={{ fontSize: 8, fontFamily: "JBM", color: E.red, fontWeight: 700, background: "#fff", padding: "2px 7px", borderRadius: 5, border: `1px solid ${E.red}30` }}>18 NOV 2024 · ECONOMY · WHAT HAPPENED</span>
+            </div>
+            <div style={{ fontSize: 11, color: E.slate, lineHeight: 1.7 }}>
+              <div>🛏 90 min fragmented sleep · 30° recline</div>
+              <div>📋 Tray too small to spread case notes</div>
+              <div>💧 Cabin air at 12% humidity · throat raw</div>
+              <div>🛂 Heathrow customs: 52 min · no fast-track</div>
+              <div>⏰ Hotel 09:18 → pitch 10:00 → walked in 10:07</div>
+              <div>🎤 Voice hoarse · suit creased · eyes red</div>
+              <div style={{ marginTop: 8, paddingTop: 8, borderTop: `1px dashed ${E.red}40`, fontWeight: 700, color: E.red }}>Result: £2M instruction lost to Clifford Chance</div>
+            </div>
+          </div>
+          <div style={{ background: E.greenSoft, border: `1.5px solid ${E.green}30`, borderRadius: 10, padding: "12px 14px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+              <span style={{ fontSize: 8, fontFamily: "JBM", color: E.green, fontWeight: 700, background: "#fff", padding: "2px 7px", borderRadius: 5, border: `1px solid ${E.green}30` }}>14 MAR 2026 · BUSINESS CLASS · WHAT'S POSSIBLE</span>
+            </div>
+            <div style={{ fontSize: 11, color: E.slate, lineHeight: 1.7 }}>
+              <div>🛏 5–6 hours real sleep · fully lie-flat bed</div>
+              <div>💼 Private suite · review notes at altitude</div>
+              <div>🥂 Hydration on tap · multi-course dining at altitude</div>
+              <div>🛂 Fast-track immigration: ~8 minutes</div>
+              <div>🚗 Chauffeur to hotel: arrival ~07:45</div>
+              <div>👔 Shower · prep · walk in at 09:55, rested</div>
+              <div style={{ marginTop: 8, paddingTop: 8, borderTop: `1px dashed ${E.green}40`, fontWeight: 700, color: E.green }}>Possible: Apex Capital mandate won</div>
+            </div>
+          </div>
+        </div>
+        <div style={{ marginTop: 12, padding: "10px 12px", background: E.goldSoft, borderRadius: 8, border: `1px solid ${E.gold}30` }}>
+          <div style={{ fontSize: 11, color: E.slate, lineHeight: 1.6 }}>
+            <strong style={{ color: E.goldDark }}>For Aisha, AED 18,500 isn't a flight upgrade — it's mandate insurance.</strong> A single Magic Circle–level instruction is worth millions in fees over its lifetime. The Business Class fare is rounding error against the cost of arriving wrecked and losing the work. <strong>This is why VoyagerAI's propensity model gives her 89%</strong> — not because she's wealthy, but because the math is overwhelming for her specifically.
+          </div>
+        </div>
+      </div>
+
       <Btn onClick={onNext}>Watch VoyagerAI Find and Convert Her →</Btn>
     </div>
   );
@@ -275,7 +315,7 @@ function S2({ onNext, add }) {
           <div style={{ animation: "slideUp .6s cubic-bezier(.16,1,.3,1)" }}>
             <div style={{ fontSize: 9, color: E.goldLight, fontFamily: "JBM", textTransform: "uppercase", letterSpacing: 3, marginBottom: 8 }}>Business Class Experience</div>
             <h1 style={{ fontSize: 24, lineHeight: 1.2, fontWeight: 700, fontFamily: "Cinzel, serif", margin: "0 0 10px", color: E.white }}>Arrive Ready.<br /><span style={{ color: E.goldLight }}>Not Just There.</span></h1>
-            <p style={{ color: "rgba(255,255,255,.4)", fontSize: 12, maxWidth: 340, lineHeight: 1.6 }}>Lie-flat beds. Gourmet Halal dining. Private chauffeur. Business Lounge access. 7 hours DXB→LHR — arrive rested and ready for whatever London demands.</p>
+            <p style={{ color: "rgba(255,255,255,.4)", fontSize: 12, maxWidth: 340, lineHeight: 1.6 }}>Lie-flat beds. Multi-course dining. Private chauffeur. Business Lounge access. 7 hours DXB→LHR — arrive rested and ready for whatever London demands.</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 14, maxWidth: 360 }}>
               {[["DXB → LHR", "Daily · 7h 30m · Non-stop"], ["Business Class", "From AED 18,500 return"], ["Chauffeur Drive", "Door to door, included"], ["Skywards Miles", "Earn 150% more miles"]].map(([k, v]) => (
                 <div key={k} style={{ background: "rgba(255,255,255,.07)", border: `1px solid ${E.gold}20`, borderRadius: 8, padding: "8px 10px" }}>
@@ -396,7 +436,7 @@ function S4({ onNext, add }) {
           <div style={{ background: `linear-gradient(135deg, ${E.charcoal}, ${E.redDark})`, padding: "14px 18px", borderBottom: `1px solid ${E.gold}20` }}>
             <div style={{ fontSize: 8, fontFamily: "JBM", color: E.goldLight, letterSpacing: 2, marginBottom: 4, textTransform: "uppercase" }}>Based on your interest in Business Class this morning</div>
             <div style={{ fontSize: 14, fontWeight: 700, fontFamily: "Cinzel, serif", color: E.white }}>DXB → LHR Business Class <span style={{ color: E.goldLight }}>— Exclusive Offer</span></div>
-            <div style={{ fontSize: 10.5, color: "rgba(255,255,255,.5)", marginTop: 3 }}>Lie-flat · Halal dining · Chauffeur · Lounge access · From <strong style={{ color: E.goldLight }}>AED 18,500</strong> return</div>
+            <div style={{ fontSize: 10.5, color: "rgba(255,255,255,.5)", marginTop: 3 }}>Lie-flat · Premium dining · Chauffeur · Lounge access · From <strong style={{ color: E.goldLight }}>AED 18,500</strong> return</div>
           </div>
           <div style={{ padding: "18px 20px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
@@ -447,28 +487,38 @@ function S5({ onNext, add }) {
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    // Auto-start the PSS enrichment sequence
+    // Three enrichment streams fire in parallel from the email:
+    //   Stream A (PSS): email → Skywards lookup → booking history
+    //   Stream B (B2B): email domain → firm identification → LinkedIn job title
+    //   Stream C (Intent): firm name → public news/press monitoring → mandate signals
     const timers = [
-      setTimeout(() => { setPhase(1); add({ type: "PSS_QUERY", detail: "VoyagerAI sends email aisha.alrashidi@altamimi.ae to Sabre PSS via prebuilt connector — looking up linked Skywards account", color: E.green, domain: "pss", time: "Day 0 · 10:34:02" }); }, 600),
-      setTimeout(() => { setPhase(2); add({ type: "PSS_RESULT", detail: "Skywards #EK-294857 found · 4 economy flights · DXB-LHR, DXB-DEL, DXB-BOM, DXB-CMB · Halal meal · Blue tier · Last: DXB-LHR Nov 2024", color: E.green, domain: "pss", time: "Day 0 · 10:34:03" }); }, 2200),
-      setTimeout(() => { setPhase(3); add({ type: "PROPENSITY_RUNNING", detail: "AI model combining: PSS DXB-LHR history + 4m32s Business cabin dwell + route checked 3x + fare calendar March–May + corporate email domain + return visit pattern", color: E.gold, domain: "cdp", time: "Day 0 · 10:34:04" }); }, 4000),
-      setTimeout(() => { setPhase(4); add({ type: "PROFILE_COMPLETE", detail: `Propensity: ${TRAVELLER.propensity}% · Ancillary: ${TRAVELLER.ancillaryScore} · LTV: ${TRAVELLER.ltv} · Segment: CORP-UPGRADE-DXB-LHR · Time elapsed: 4.1 seconds`, color: E.gold, domain: "cdp", time: "Day 0 · 10:34:05" }); }, 6000),
+      setTimeout(() => { setPhase(1); add({ type: "ENRICHMENT_FAN_OUT", detail: "Email triggers 3 parallel enrichments: (A) Sabre PSS · (B) B2B firmographic · (C) Public news intent", color: E.gold, domain: "cdp", time: "Day 0 · 10:34:02" }); }, 600),
+      setTimeout(() => { add({ type: "PSS_QUERY", detail: "Stream A: email sent to Sabre PSS via prebuilt connector — looking up linked Skywards account", color: E.green, domain: "pss", time: "Day 0 · 10:34:02" }); }, 900),
+      setTimeout(() => { add({ type: "B2B_QUERY", detail: "Stream B: email domain altamimi.ae sent to Clearbit / ZoomInfo / Apollo APIs — firmographic + person-level enrichment", color: E.teal, domain: "cdp", time: "Day 0 · 10:34:02" }); }, 1100),
+      setTimeout(() => { add({ type: "INTENT_QUERY", detail: "Stream C: VoyagerAI's news/press monitor checks recent mandate announcements naming the firm or known partners", color: E.purple, domain: "cdp", time: "Day 0 · 10:34:03" }); }, 1300),
+      setTimeout(() => { setPhase(2); add({ type: "PSS_RESULT", detail: "Stream A returns: Skywards #EK-294857 · 4 economy flights · DXB-LHR, DXB-DEL, DXB-BOM, DXB-CMB · Blue tier · Last: DXB-LHR Nov 2024", color: E.green, domain: "pss", time: "Day 0 · 10:34:03" }); }, 2200),
+      setTimeout(() => { setPhase(3); add({ type: "B2B_RESULT", detail: "Stream B returns: altamimi.ae → Al Tamimi & Company (largest law firm in MENA · 700+ lawyers · 17 offices) · LinkedIn match: Aisha Al-Rashidi · Partner · Corporate / M&A", color: E.teal, domain: "cdp", time: "Day 0 · 10:34:03" }); }, 2900),
+      setTimeout(() => { setPhase(4); add({ type: "INTENT_RESULT", detail: "Stream C returns: Khaleej Times (12 Feb 2026) · 'Al Tamimi advises Apex Capital on £500M MENA infrastructure fund' · Lead partner: Aisha Al-Rashidi · London engagement implied", color: E.purple, domain: "cdp", time: "Day 0 · 10:34:04" }); }, 3700),
+      setTimeout(() => { setPhase(5); add({ type: "PROPENSITY_RUNNING", detail: "AI model combines all 3 streams: PSS history + B2B context (Partner @ top firm) + Intent (Apex mandate just announced) + website behaviour + return visit pattern", color: E.gold, domain: "cdp", time: "Day 0 · 10:34:05" }); }, 4800),
+      setTimeout(() => { setPhase(6); add({ type: "PROFILE_COMPLETE", detail: `Propensity: ${TRAVELLER.propensity}% · Ancillary: ${TRAVELLER.ancillaryScore} · LTV: ${TRAVELLER.ltv} · Segment: CORP-UPGRADE-DXB-LHR · Time elapsed: 4.1 seconds`, color: E.gold, domain: "cdp", time: "Day 0 · 10:34:06" }); }, 6000),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
   const sequenceSteps = [
     { label: "Email submitted on fare alert form", sub: "First-party identity key obtained · Cookie bridged", done: true, color: E.gold, always: true },
-    { label: "Sabre PSS queried via prebuilt connector", sub: "Email used to look up linked Skywards account", done: phase >= 1, color: E.green },
-    { label: "PSS returns booking history", sub: "4 flights · tier · meal preference · route history", done: phase >= 2, color: E.green },
-    { label: "Propensity model runs", sub: "PSS data + website behaviour + intent signals combined", done: phase >= 3, color: E.gold },
-    { label: "Full enriched profile ready", sub: "89% propensity · AED 280K LTV · Segment assigned", done: phase >= 4, color: E.gold },
+    { label: "3 parallel enrichments fan out from email", sub: "PSS · B2B firmographic · Public news intent — all fire simultaneously", done: phase >= 1, color: E.gold },
+    { label: "Stream A — Sabre PSS returns booking history", sub: "4 flights · Blue tier · meal pref · DXB-LHR route history", done: phase >= 2, color: E.green },
+    { label: "Stream B — Email domain reveals firm + role", sub: "altamimi.ae → Al Tamimi · LinkedIn match → Partner, M&A", done: phase >= 3, color: E.teal },
+    { label: "Stream C — Public news ties firm to imminent travel", sub: "Khaleej Times: Al Tamimi advising Apex Capital · she is lead partner", done: phase >= 4, color: E.purple },
+    { label: "Propensity model runs across all signals", sub: "PSS + B2B context + Intent + behaviour combined", done: phase >= 5, color: E.gold },
+    { label: "Full enriched profile ready", sub: "89% propensity · AED 280K LTV · Segment assigned", done: phase >= 6, color: E.gold },
   ];
 
   return (
     <div>
-      <DayBanner day="Day 0 · 10:34 AM" desc="Email submitted → VoyagerAI queries Sabre PSS → Full profile in 4.1 seconds" color={E.green}
-        sub="This is the core of VoyagerAI's value. The prebuilt Sabre connector means no custom API work. PSS data + behavioural signals + AI scoring combine in seconds — not days. The conversion window is still wide open." />
+      <DayBanner day="Day 0 · 10:34 AM" desc="Email triggers 3 parallel enrichments → PSS, B2B firmographic, public news intent → Full profile in 4.1 seconds" color={E.green}
+        sub="The email is the universal key. From it, VoyagerAI fans out three parallel queries — Sabre PSS for booking history, Clearbit/ZoomInfo for firm and role context, and a news/press monitor for public intent signals. Each is a real, standard CDP capability. Together they explain who Aisha is and why she's about to book." />
 
       <Glass style={{ padding: 16, marginBottom: 12 }}>
         <div style={{ fontSize: 10, fontFamily: "JBM", color: E.goldDark, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 12 }}>Live Enrichment Sequence — Step by Step</div>
@@ -486,46 +536,80 @@ function S5({ onNext, add }) {
         </div>
       </Glass>
 
-      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-        <TZone domain="pss" active={phase >= 1} note={phase >= 1 ? "Queried via email" : "Waiting for email…"}>
-          <span style={{ fontSize: 10, color: phase >= 1 ? E.slate : E.pale }}>{phase >= 1 ? "Sabre returns: 4 flights, Blue tier, Halal meal, DXB→LHR history" : "PSS cannot be queried until email is known — this is why form fill comes first"}</span>
-        </TZone>
-        <TZone domain="cdp" active={phase >= 3} note={phase >= 3 ? "Propensity running" : "Awaiting PSS…"}>
-          <span style={{ fontSize: 10, color: phase >= 3 ? E.slate : E.pale }}>{phase >= 3 ? "AI model combining PSS + behavioural + intent signals" : "VoyagerAI waits for PSS data before scoring"}</span>
-        </TZone>
-      </div>
-
       {phase >= 2 && (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12, animation: "slideUp .4s ease" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 12, animation: "slideUp .4s ease" }}>
+          {/* Stream A: PSS */}
           <Glass style={{ padding: 14 }}>
-            <div style={{ fontSize: 9, fontFamily: "JBM", color: E.green, fontWeight: 700, marginBottom: 8 }}>🛫 SABRE PSS · HISTORY RETURNED</div>
-            {[["Skywards No.", TRAVELLER.skywardsNo], ["Tier", TRAVELLER.skywardsTier], ["EK Flights", `${TRAVELLER.priorFlights} × Economy`], ["Prior DXB→LHR", "1 · Nov 2024 (economy)"], ["Meal Pref.", TRAVELLER.mealPref]].map(([k, v]) => (
-              <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "3px 0", borderBottom: `1px solid ${E.mist}`, fontSize: 10.5 }}>
-                <span style={{ color: E.mid, fontFamily: "JBM", fontSize: 9 }}>{k}</span>
-                <span style={{ fontWeight: 600, color: E.ink }}>{v}</span>
+            <div style={{ fontSize: 9, fontFamily: "JBM", color: E.green, fontWeight: 700, marginBottom: 8 }}>🛫 STREAM A · SABRE PSS</div>
+            {[["Skywards No.", TRAVELLER.skywardsNo], ["Tier", TRAVELLER.skywardsTier], ["EK Flights", `${TRAVELLER.priorFlights} × Economy`], ["Prior DXB→LHR", "1 · Nov 2024"], ["Meal Pref.", TRAVELLER.mealPref]].map(([k, v]) => (
+              <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "3px 0", borderBottom: `1px solid ${E.mist}`, fontSize: 10 }}>
+                <span style={{ color: E.mid, fontFamily: "JBM", fontSize: 8.5 }}>{k}</span>
+                <span style={{ fontWeight: 600, color: E.ink, fontSize: 10 }}>{v}</span>
               </div>
             ))}
+            <div style={{ marginTop: 8, fontSize: 8, color: E.green, fontFamily: "JBM" }}>Source: Sabre PSS prebuilt connector</div>
           </Glass>
-          {phase >= 4 && (
+
+          {/* Stream B: B2B */}
+          {phase >= 3 ? (
             <Glass style={{ padding: 14 }}>
-              <div style={{ fontSize: 9, fontFamily: "JBM", color: E.goldDark, fontWeight: 700, marginBottom: 8 }}>⚡ VOYAGERAI · AI SCORES</div>
-              <PropensityBar score={TRAVELLER.propensity} />
-              <div style={{ marginTop: 10, display: "flex", gap: 5, flexWrap: "wrap" }}>
-                <Tag color={E.green}>LTV: {TRAVELLER.ltv}</Tag>
-                <Tag color={E.gold}>Ancillary: {TRAVELLER.ancillaryScore}</Tag>
-                <Tag color={E.purple}>Corp Upgrade</Tag>
-                <Tag color={E.teal}>Pitch · 14 Mar</Tag>
-              </div>
-              <div style={{ marginTop: 8, fontSize: 9, color: E.goldDark, fontFamily: "JBM", fontWeight: 700 }}>Segment: CORP-UPGRADE-DXB-LHR · PRIORITY: HIGH</div>
+              <div style={{ fontSize: 9, fontFamily: "JBM", color: E.teal, fontWeight: 700, marginBottom: 8 }}>🏢 STREAM B · B2B FIRMOGRAPHIC</div>
+              {[["Email Domain", "altamimi.ae"], ["Firm", "Al Tamimi & Co."], ["Industry", "Legal · M&A · Corporate"], ["Size", "700+ lawyers · 17 offices"], ["Person Match", "Partner · M&A"]].map(([k, v]) => (
+                <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "3px 0", borderBottom: `1px solid ${E.mist}`, fontSize: 10 }}>
+                  <span style={{ color: E.mid, fontFamily: "JBM", fontSize: 8.5 }}>{k}</span>
+                  <span style={{ fontWeight: 600, color: E.ink, fontSize: 10 }}>{v}</span>
+                </div>
+              ))}
+              <div style={{ marginTop: 8, fontSize: 8, color: E.teal, fontFamily: "JBM" }}>Source: Clearbit / ZoomInfo / LinkedIn</div>
+            </Glass>
+          ) : (
+            <Glass style={{ padding: 14, opacity: .35 }}>
+              <div style={{ fontSize: 9, fontFamily: "JBM", color: E.teal, fontWeight: 700, marginBottom: 8 }}>🏢 STREAM B · B2B FIRMOGRAPHIC</div>
+              <div style={{ fontSize: 10, color: E.pale, fontStyle: "italic", padding: "20px 0", textAlign: "center" }}>Querying Clearbit / ZoomInfo / LinkedIn…</div>
+            </Glass>
+          )}
+
+          {/* Stream C: Intent */}
+          {phase >= 4 ? (
+            <Glass style={{ padding: 14 }}>
+              <div style={{ fontSize: 9, fontFamily: "JBM", color: E.purple, fontWeight: 700, marginBottom: 8 }}>📰 STREAM C · NEWS INTENT</div>
+              <div style={{ fontSize: 10, color: E.slate, lineHeight: 1.5, marginBottom: 6 }}><strong>Khaleej Times · 12 Feb 2026</strong></div>
+              <div style={{ fontSize: 10, color: E.slate, lineHeight: 1.45, marginBottom: 8, fontStyle: "italic" }}>"Al Tamimi advises Apex Capital on £500M MENA infrastructure fund. Lead partner: Aisha Al-Rashidi."</div>
+              {[["Mandate", "Apex Capital"], ["Deal Size", "£500M"], ["Lead Partner", "Aisha Al-Rashidi"], ["London Implied", "Yes — fund HQ"]].map(([k, v]) => (
+                <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "2px 0", borderBottom: `1px solid ${E.mist}`, fontSize: 9.5 }}>
+                  <span style={{ color: E.mid, fontFamily: "JBM", fontSize: 8.5 }}>{k}</span>
+                  <span style={{ fontWeight: 600, color: E.ink, fontSize: 9.5 }}>{v}</span>
+                </div>
+              ))}
+              <div style={{ marginTop: 8, fontSize: 8, color: E.purple, fontFamily: "JBM" }}>Source: Bombora / 6sense / press monitor</div>
+            </Glass>
+          ) : (
+            <Glass style={{ padding: 14, opacity: .35 }}>
+              <div style={{ fontSize: 9, fontFamily: "JBM", color: E.purple, fontWeight: 700, marginBottom: 8 }}>📰 STREAM C · NEWS INTENT</div>
+              <div style={{ fontSize: 10, color: E.pale, fontStyle: "italic", padding: "20px 0", textAlign: "center" }}>Scanning press releases for {`{firm}`} mentions…</div>
             </Glass>
           )}
         </div>
       )}
 
-      {phase >= 4 && (
+      {phase >= 6 && (
+        <Glass style={{ padding: 14, marginBottom: 12, animation: "slideUp .4s ease" }} highlight>
+          <div style={{ fontSize: 9, fontFamily: "JBM", color: E.goldDark, fontWeight: 700, marginBottom: 8 }}>⚡ VOYAGERAI · AI PROPENSITY MODEL · ALL 3 STREAMS COMBINED</div>
+          <PropensityBar score={TRAVELLER.propensity} />
+          <div style={{ marginTop: 10, display: "flex", gap: 5, flexWrap: "wrap" }}>
+            <Tag color={E.green}>LTV: {TRAVELLER.ltv}</Tag>
+            <Tag color={E.gold}>Ancillary: {TRAVELLER.ancillaryScore}</Tag>
+            <Tag color={E.purple}>Corp Upgrade · Apex mandate</Tag>
+            <Tag color={E.teal}>Partner @ Al Tamimi</Tag>
+          </div>
+          <div style={{ marginTop: 8, fontSize: 9, color: E.goldDark, fontFamily: "JBM", fontWeight: 700 }}>Segment: CORP-UPGRADE-DXB-LHR · PRIORITY: HIGH · Confidence: 89%</div>
+        </Glass>
+      )}
+
+      {phase >= 6 && (
         <div style={{ animation: "slideUp .4s ease" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 12 }}>
-            {[["⚡ 4.1 seconds", "Full profile from 5 data sources vs. 2–3 days manual"], ["🔌 Prebuilt Sabre connector", "No custom API development — live from day one"], ["📊 89% propensity accuracy", "AI model vs. manual rule-based segmentation: 40% more accurate"]].map(([v, d]) => (
+            {[["⚡ 4.1 seconds", "Full profile from 3 enrichment streams + behavioural data"], ["🔌 Standard CDP capabilities", "PSS connector · B2B enrichment · News intent — all production-grade APIs"], ["📊 89% propensity accuracy", "AI model with 3 signal types · 40% more accurate than rule-based"]].map(([v, d]) => (
               <div key={v} style={{ background: E.goldSoft, border: `1.5px solid ${E.gold}30`, borderRadius: 12, padding: 14, textAlign: "center" }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: E.goldDark, fontFamily: "Cinzel, serif", marginBottom: 5 }}>{v}</div>
                 <div style={{ fontSize: 10, color: E.mid }}>{d}</div>
@@ -605,10 +689,12 @@ function S7({ onNext, add }) {
     add({ type: "MICRO_SEGMENT", detail: "Assigned: CORP-UPGRADE-DXB-LHR-Q1 · Priority: HIGH · Journey Orchestrator triggered", color: E.gold, domain: "cdp", time: "Day 0 · 10:34:12" });
   }, []);
   const attrs = [
-    ["Identity", [["Name", TRAVELLER.name], ["Email", TRAVELLER.email], ["Phone", TRAVELLER.phone], ["Location", "Dubai, UAE"]]],
+    ["Identity · From Form Fill", [["Name", TRAVELLER.name], ["Email", TRAVELLER.email], ["Phone", TRAVELLER.phone], ["Location", "Dubai, UAE"]]],
     ["PSS · Sabre Data", [["Skywards No.", TRAVELLER.skywardsNo], ["Tier", TRAVELLER.skywardsTier], ["EK Flights", "4 × Economy (1 DXB→LHR)"], ["Meal Pref.", TRAVELLER.mealPref]]],
-    ["Intent Signals", [["Route", "DXB → LHR"], ["Cabin", "Business Class"], ["Dwell Time", "4m 32s on cabin page"], ["Travel Window", "March–May 2026"]]],
-    ["AI Scores", [["Propensity", `${TRAVELLER.propensity}% (High)`], ["Ancillary", `${TRAVELLER.ancillaryScore}/100`], ["Pitch Signal", "18 March · LHR"], ["LTV Estimate", TRAVELLER.ltv]]],
+    ["B2B · Firmographic + LinkedIn", [["Firm", "Al Tamimi & Co."], ["Role", "Partner · M&A"], ["Industry", "Legal · Top-tier MENA"], ["Source", "Email domain + Clearbit"]]],
+    ["News Intent · Press Monitor", [["Mandate", "Apex Capital"], ["Deal Size", "£500M MENA fund"], ["Source", "Khaleej Times · 12 Feb"], ["Travel Implied", "London · imminent"]]],
+    ["Intent Signals · Web Behaviour", [["Route", "DXB → LHR"], ["Cabin", "Business Class"], ["Dwell Time", "4m 32s on cabin page"], ["Travel Window", "March–May 2026"]]],
+    ["AI Scores · VoyagerAI Model", [["Propensity", `${TRAVELLER.propensity}% (High)`], ["Ancillary", `${TRAVELLER.ancillaryScore}/100`], ["Pitch Signal", "18 March · LHR"], ["LTV Estimate", TRAVELLER.ltv]]],
   ];
   return (
     <div>
@@ -660,13 +746,13 @@ function S7({ onNext, add }) {
 function S8({ onNext, add }) {
   useEffect(() => {
     add({ type: "JOURNEY_STARTED", detail: "Aisha enters: corporate_upgrade_nurture_v2 · 9-day journey · 5 channels · Zero overkill logic active", color: E.amber, domain: "jo", time: "Day 0 · EOD" });
-    add({ type: "GENAI_CONTENT", detail: "8 personalised content variants generated in 0.3 seconds: name + route + Apex Capital pitch context + Halal meal + arrive-rested hook + Skywards Silver path + lie-flat overnight + urgency", color: E.gold, domain: "cdp", time: "Day 0 · EOD" });
+    add({ type: "GENAI_CONTENT", detail: "8 personalised content variants generated in 0.3 seconds: name + route + Apex Capital pitch context + meal pref + arrive-rested hook + Skywards Silver path + lie-flat overnight + urgency", color: E.gold, domain: "cdp", time: "Day 0 · EOD" });
   }, []);
   const journey = [
     { day: "Day 0", ev: "Form fill → PSS enrich (4.1s) → identity stitched → RLSA + LinkedIn + Instagram audiences live", d: "cdp", done: true },
     { day: "Day 0", ev: "GenAI authors 8 personalised content variants for all channels in 0.3 seconds", d: "cdp", done: true },
     { day: "Day 1–2", ev: "Google RLSA + LinkedIn sponsored content fire — 'Big pitch in London? Arrive Ready.' Personalised, Aisha only.", d: "google", done: false },
-    { day: "Day 3", ev: "📧 Email #1: 'Aisha, your DXB→LHR Business Class seat awaits' — Halal, lie-flat, Apex pitch context", d: "email", done: false },
+    { day: "Day 3", ev: "📧 Email #1: 'Aisha, your DXB→LHR Business Class seat awaits' — lie-flat, Apex pitch context, sleep-focused", d: "email", done: false },
     { day: "Day 6", ev: "📱 Instagram: cinematic Business Class creative · 💬 SMS: 72hr corporate rate seat hold for 14 March", d: "social", done: false },
     { day: "Day 9", ev: "📧 Email #2: Urgency — 'Only 2 seats left on EK007 · 14 March · hold expires today at 1pm.'", d: "email", done: false },
     { day: "Day 9", ev: "Aisha books the 14 March flight → ALL channels suppressed · Post-booking journey begins", d: "jo", done: false },
@@ -748,7 +834,7 @@ function SRLSA({ onNext, add }) {
                   </div>
                   <div style={{ fontSize: 14, color: "#1A0DAB", fontWeight: 700, marginTop: 4 }}>Aisha — Your DXB→LHR Business Class for 14 March</div>
                   <div style={{ fontSize: 10.5, color: "#006621", marginTop: 1 }}>emirates.com/skywards/exclusive · Skywards member rate</div>
-                  <div style={{ fontSize: 11, color: E.slate, marginTop: 4, lineHeight: 1.5 }}>EK007 · 14 March · Lie-flat overnight · Halal gourmet · Chauffeur · Lounge · From <strong>AED 18,500</strong> · <strong style={{ color: E.goldDark }}>Hold this fare →</strong></div>
+                  <div style={{ fontSize: 11, color: E.slate, marginTop: 4, lineHeight: 1.5 }}>EK007 · 14 March · Lie-flat overnight · Premium dining · Chauffeur · Lounge · From <strong>AED 18,500</strong> · <strong style={{ color: E.goldDark }}>Hold this fare →</strong></div>
                 </div>
               </div>
             </div>
@@ -786,7 +872,7 @@ function SRLSA({ onNext, add }) {
                   <div style={{ fontSize: 9, color: E.pale }}>Day 2 · 1:18 PM</div>
                 </div>
               </div>
-              <div style={{ padding: "0 14px 12px", fontSize: 11.5, color: E.ink, lineHeight: 1.6 }}>For partners and senior counsel flying DXB→LHR for client meetings: <strong>arrive ready, not wrecked</strong>. Business Class on the overnight EK007. Lie-flat. Halal gourmet. Chauffeur both ends. Land at 6:45 AM, take your meeting at 9.</div>
+              <div style={{ padding: "0 14px 12px", fontSize: 11.5, color: E.ink, lineHeight: 1.6 }}>For partners and senior counsel flying DXB→LHR for client meetings: <strong>arrive ready, not wrecked</strong>. Business Class on the overnight EK007. Lie-flat. Multi-course dining. Chauffeur both ends. Land at 6:45 AM, take your meeting at 9.</div>
               <div style={{ background: `linear-gradient(160deg, ${E.charcoal}, ${E.redDark})`, padding: "26px 22px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
                   <div style={{ fontSize: 8, fontFamily: "JBM", color: E.goldLight, letterSpacing: 2, textTransform: "uppercase" }}>Emirates · Business Class</div>
@@ -836,7 +922,7 @@ function S9({ onNext, add }) {
   return (
     <div>
       <DayBanner day="Day 3 · 08:00 AM" desc="GenAI writes Aisha a 1:1 email — speaking directly to the pitch she cannot afford to lose" color={E.purple}
-        sub="Every detail earns its place: her name, the DXB→LHR route, the 14 March flight date, the Apex Capital pitch on 18 March, Halal dining, the lie-flat bed for the overnight return. GenAI generates this in 0.3 seconds from 8 personal data signals." />
+        sub="Every detail earns its place: her name, the DXB→LHR route, the 14 March flight date, the Apex Capital pitch on 18 March, lie-flat sleep, and the Skywards Silver path. GenAI generates this in 0.3 seconds from 8 personal data signals." />
       <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
         <TZone domain="email" active note="GenAI authored"><span style={{ fontSize: 10, color: E.slate }}>8 personalised signals · 60% faster than manual authoring · Open rate 74% vs 22% avg</span></TZone>
         <TZone domain="jo" active note="Open, no click"><span style={{ fontSize: 10, color: E.slate }}>JO detects mobile open → queues Instagram visual + SMS seat hold for 14 March</span></TZone>
@@ -860,7 +946,7 @@ function S9({ onNext, add }) {
             </p>
             <div style={{ background: E.goldSoft, border: `1.5px solid ${E.gold}40`, borderRadius: 12, padding: 14, marginBottom: 14 }}>
               <div style={{ fontSize: 9, fontFamily: "JBM", color: E.goldDark, fontWeight: 700, marginBottom: 8 }}>YOUR PERSONALISED CORPORATE OFFER · 14 MARCH 2026</div>
-              {[["Flight", "EK007 · DXB 02:35 → LHR 06:45 · Lands rested for the day"], ["Cabin", "Business Class · Fully lie-flat bed · Do Not Disturb mode"], ["Fare", "AED 18,500 return · All-inclusive corporate rate"], ["Dining", "Halal gourmet menu — served at your pace, at altitude"], ["Extras", "Chauffeur drive both ends · Business Lounge · 40kg baggage"], ["Skywards", "Earn 150% miles · One booking from Silver tier"]].map(([k, v]) => (
+              {[["Flight", "EK007 · DXB 02:35 → LHR 06:45 · Lands rested for the day"], ["Cabin", "Business Class · Fully lie-flat bed · Do Not Disturb mode"], ["Fare", "AED 18,500 return · All-inclusive corporate rate"], ["Sleep", "Premium bedding · Sleep mask · Wake-30-min-before-landing service"], ["Extras", "Chauffeur drive both ends · Business Lounge · 40kg baggage"], ["Skywards", "Earn 150% miles · One booking from Silver tier"]].map(([k, v]) => (
                 <div key={k} style={{ display: "flex", gap: 10, padding: "4px 0", borderBottom: `1px solid ${E.gold}20`, fontSize: 11 }}>
                   <span style={{ color: E.pale, fontFamily: "JBM", fontSize: 8.5, minWidth: 52 }}>{k}</span>
                   <span style={{ color: E.ink, fontWeight: 600 }}>{v}</span>
@@ -870,7 +956,7 @@ function S9({ onNext, add }) {
             <p style={{ fontSize: 11.5, color: E.mid, marginBottom: 14, lineHeight: 1.6 }}>This booking puts you <strong style={{ color: E.goldDark }}>one flight from Skywards Silver</strong> — lounge access and priority boarding for every future trip. London is clearly going to be a recurring destination.</p>
             <Btn onClick={onNext}>Continue to Day 6 →</Btn>
             <div style={{ marginTop: 12, padding: "8px 12px", background: E.purpleSoft, borderRadius: 8, border: `1px solid ${E.purple}20` }}>
-              <div style={{ fontSize: 8.5, fontFamily: "JBM", color: E.purple, fontWeight: 700 }}>⚡ GenAI signals used: name · 14 March flight date · Apex Capital pitch on 18 March · DXB→LHR route · Halal pref · lie-flat overnight · Skywards Silver path · arrive-ready hook · Generated in 0.3 seconds</div>
+              <div style={{ fontSize: 8.5, fontFamily: "JBM", color: E.purple, fontWeight: 700 }}>⚡ GenAI signals used: name · 14 March flight date · Apex Capital pitch on 18 March · DXB→LHR route · sleep mode preference · lie-flat overnight · Skywards Silver path · arrive-ready hook · Generated in 0.3 seconds</div>
             </div>
           </div>
         </div>
@@ -918,7 +1004,7 @@ function S10({ onNext, add }) {
               <div style={{ background: "#fff", border: `1px solid ${E.mist}`, borderRadius: "2px 14px 14px 14px", padding: "10px 12px", fontSize: 11, color: E.ink, lineHeight: 1.7 }}>
                 <div style={{ fontSize: 8, fontFamily: "JBM", color: E.red, fontWeight: 700, marginBottom: 4 }}>EMIRATES · 1:00 PM</div>
                 <strong>Aisha</strong>, only <strong>4 Business Class seats</strong> remain on EK007 DXB→LHR for March 14.<br /><br />
-                Reply <strong>HOLD</strong> to reserve at our 72-hour <strong>corporate rate</strong>. <strong style={{ color: E.goldDark }}>AED 18,500</strong> return · Halal · Chauffeur included.<br />
+                Reply <strong>HOLD</strong> to reserve at our 72-hour <strong>corporate rate</strong>. <strong style={{ color: E.goldDark }}>AED 18,500</strong> return · Lie-flat · Chauffeur included.<br />
                 <span style={{ fontSize: 9, color: E.pale }}>Reply STOP to opt out.</span>
               </div>
             </div>
@@ -970,7 +1056,7 @@ function S11({ onNext, add }) {
                 </div>
                 <div style={{ marginTop: 12, display: "flex", gap: 10, alignItems: "center" }}>
                   <div style={{ fontSize: 22, fontWeight: 800, color: E.green, fontFamily: "Cinzel, serif" }}>AED 18,500</div>
-                  <div style={{ fontSize: 11, color: E.mid }}>EK007 · 14 March 2026 · Business Class return · Halal · Chauffeur · Lounge · 40kg</div>
+                  <div style={{ fontSize: 11, color: E.mid }}>EK007 · 14 March 2026 · Business Class return · Lie-flat · Chauffeur · Lounge · 40kg</div>
                 </div>
               </div>
               <Btn onClick={doConvert}>▶ Aisha Confirms — Books the Flight</Btn>
@@ -1003,7 +1089,7 @@ function S11({ onNext, add }) {
                     </div>
                   </div>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
-                    {[["Departure", "DXB · 02:35 (14 Mar)"], ["Arrival", "LHR · 06:45 (14 Mar)"], ["Cabin", "Business Class · Lie-flat"], ["Duration", "7h 30m · Non-stop"], ["Meal", "Halal gourmet"], ["Extras", "Chauffeur · Lounge · 40kg"]].map(([k, v]) => (
+                    {[["Departure", "DXB · 02:35 (14 Mar)"], ["Arrival", "LHR · 06:45 (14 Mar)"], ["Cabin", "Business Class · Lie-flat"], ["Duration", "7h 30m · Non-stop"], ["Sleep", "Do Not Disturb mode"], ["Extras", "Chauffeur · Lounge · 40kg"]].map(([k, v]) => (
                       <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "3px 0", borderBottom: `1px solid ${E.mist}`, fontSize: 10 }}>
                         <span style={{ color: E.pale, fontFamily: "JBM", fontSize: 8.5 }}>{k}</span>
                         <span style={{ fontWeight: 600, color: E.ink }}>{v}</span>
@@ -1047,7 +1133,7 @@ function S12({ add }) {
     { day: "Day 0", ev: "VoyagerAI queries Sabre PSS using email → Skywards found → 4 flights · Propensity: 89% in 4.1 seconds.", d: "pss" },
     { day: "Day 0", ev: "Identity stitched: Google Customer Match + LinkedIn + Instagram. RLSA bid +70% for Aisha only.", d: "cdp" },
     { day: "Day 1–2", ev: "RLSA + LinkedIn: 'Big pitch in London? Arrive Ready.' CTR: 4.2% vs 0.8% generic creative.", d: "google" },
-    { day: "Day 3", ev: "📧 Email #1: Apex Capital pitch context + 14 March flight + Halal + lie-flat overnight + Skywards Silver path. Opened, no click.", d: "email" },
+    { day: "Day 3", ev: "📧 Email #1: Apex Capital pitch context + 14 March flight + lie-flat overnight + Skywards Silver path. Opened, no click.", d: "email" },
     { day: "Day 6", ev: "📱 Instagram: 'Arrive. Don't Just Land.' · 💬 SMS holds 14 March seat → Aisha replies HOLD in 4 min. Propensity: 94%.", d: "social" },
     { day: "Day 9", ev: "📧 Urgency: 2 seats left, hold expires 1pm → Aisha books EK007 14 March Business Class. AED 18,500. 🎉", d: "emirates" },
     { day: "Day 9", ev: "ALL channels suppressed · Post-booking: lounge offer · Skywards Silver · April fare alert flagged · Retained.", d: "jo" },
