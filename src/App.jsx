@@ -183,10 +183,11 @@ const STEPS = [
   { label: "Identity Stitching", n: "06" },
   { label: "VoyagerAI Profile", n: "07" },
   { label: "Journey Plan", n: "08" },
-  { label: "Day 3: Email", n: "09" },
-  { label: "Day 6: Social + SMS", n: "10" },
-  { label: "Day 9: Convert", n: "11" },
-  { label: "CAC Dashboard", n: "12" },
+  { label: "Day 1–2: RLSA + LinkedIn", n: "09" },
+  { label: "Day 3: Email", n: "10" },
+  { label: "Day 6: Social + SMS", n: "11" },
+  { label: "Day 9: Convert", n: "12" },
+  { label: "CAC Dashboard", n: "13" },
 ];
 
 /* ═══ S1: THE PROBLEM ═══ */
@@ -664,7 +665,7 @@ function S8({ onNext, add }) {
   const journey = [
     { day: "Day 0", ev: "Form fill → PSS enrich (4.1s) → identity stitched → RLSA + LinkedIn + Instagram audiences live", d: "cdp", done: true },
     { day: "Day 0", ev: "GenAI authors 8 personalised content variants for all channels in 0.3 seconds", d: "cdp", done: true },
-    { day: "Day 1–2", ev: "Google RLSA + LinkedIn sponsored content: 'Big pitch in London? Arrive Ready.'", d: "google", done: true },
+    { day: "Day 1–2", ev: "Google RLSA + LinkedIn sponsored content fire — 'Big pitch in London? Arrive Ready.' Personalised, Aisha only.", d: "google", done: false },
     { day: "Day 3", ev: "📧 Email #1: 'Aisha, your DXB→LHR Business Class seat awaits' — Halal, lie-flat, Apex pitch context", d: "email", done: false },
     { day: "Day 6", ev: "📱 Instagram: cinematic Business Class creative · 💬 SMS: 72hr corporate rate seat hold for 14 March", d: "social", done: false },
     { day: "Day 9", ev: "📧 Email #2: Urgency — 'Only 2 seats left on EK007 · 14 March · hold expires today at 1pm.'", d: "email", done: false },
@@ -693,7 +694,134 @@ function S8({ onNext, add }) {
           </Glass>
         ))}
       </div>
-      <Btn onClick={onNext}>Day 3: Personalised Email →</Btn>
+      <Btn onClick={onNext}>Day 1–2: Watch RLSA + LinkedIn Fire →</Btn>
+    </div>
+  );
+}
+
+/* ═══ SRLSA: DAY 1–2 RLSA + LINKEDIN — RETARGETING IN ACTION ═══ */
+function SRLSA({ onNext, add }) {
+  useEffect(() => {
+    add({ type: "RLSA_BID_WON", detail: "Aisha returns to Google for fare comparison · VoyagerAI's +70% bid modifier on her hashed email wins top SERP placement · Emirates ad served only to her", color: "#1A73E8", domain: "google", time: "Day 1 · 11:42 AM" });
+    setTimeout(() => add({ type: "RLSA_IMPRESSION", detail: "Personalised ad rendered: 'Aisha — Skywards member · Your DXB→LHR Business Class for 14 March from AED 18,500'", color: "#1A73E8", domain: "google", time: "Day 1 · 11:42:01" }), 900);
+    setTimeout(() => add({ type: "RLSA_CLICK", detail: "Aisha clicks the personalised Emirates ad · CTR 12.4% vs 0.8% on generic ads · Cookie em_4f9a2c recognised, identity restored", color: "#1A73E8", domain: "google", time: "Day 1 · 11:43 AM" }), 2000);
+    setTimeout(() => add({ type: "LINKEDIN_IMPRESSION", detail: "Day 2: LinkedIn Matched Audience fires · Sponsored content shown to ek_corp_upgrade_dxb_lhr_highltv segment only · Aisha sees it during lunch scroll", color: "#E1306C", domain: "social", time: "Day 2 · 1:18 PM" }), 3200);
+    setTimeout(() => add({ type: "BRAND_LIFT", detail: "Multi-touch reinforcement complete · 3 brand exposures over 48 hours · Email open propensity raised pre-Day 3 · Recall +340% vs single-channel", color: E.gold, domain: "cdp", time: "Day 2 · 1:19 PM" }), 4400);
+  }, []);
+
+  return (
+    <div>
+      <DayBanner day="Day 1–2" desc="The audiences activated in Step 6 win their first impressions — Aisha sees personalised ads, only Aisha" color="#1A73E8"
+        sub="On Day 0 (Step 3), Aisha was anonymous on Google — competitors won the paid placements. Now her hashed email is in Google Customer Match and LinkedIn Matched Audiences. VoyagerAI bids +70% specifically for her. Emirates wins the top slot. The ad copy is personalised. Same on LinkedIn." />
+
+      <div style={{ background: E.greenSoft, border: `1.5px solid ${E.green}30`, borderRadius: 12, padding: "12px 16px", marginBottom: 12 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: E.green, fontFamily: "Cinzel, serif", marginBottom: 5 }}>🎯 Day 0 vs. Day 1 — the same Google search, completely different result</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 8 }}>
+          <div style={{ background: "#fff", borderRadius: 8, padding: 10, border: `1px solid ${E.red}30` }}>
+            <div style={{ fontSize: 9, fontFamily: "JBM", color: E.red, fontWeight: 700, marginBottom: 3 }}>DAY 0 · STEP 3 — BEFORE IDENTITY</div>
+            <div style={{ fontSize: 10, color: E.slate, lineHeight: 1.5 }}>Aisha anonymous · Emirates couldn't bid for her specifically · Qatar &amp; Etihad won paid placements with generic offers · Emirates only in organic listing</div>
+          </div>
+          <div style={{ background: "#fff", borderRadius: 8, padding: 10, border: `1px solid ${E.green}30` }}>
+            <div style={{ fontSize: 9, fontFamily: "JBM", color: E.green, fontWeight: 700, marginBottom: 3 }}>DAY 1 · NOW — AFTER IDENTITY</div>
+            <div style={{ fontSize: 10, color: E.slate, lineHeight: 1.5 }}>VoyagerAI applies +70% bid modifier on her hashed email · Emirates wins top slot · Ad copy personalised with name, route, date, fare · Competitors invisible to her</div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ marginBottom: 14 }}>
+        <div style={{ fontSize: 10, fontFamily: "JBM", color: E.mid, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 6 }}>Day 1 · 11:42 AM · Google Search — Aisha checks fares again</div>
+        <Chrome url="https://www.google.com/search?q=business+class+dubai+london+march+2026">
+          <div style={{ background: "#fff", padding: "16px 18px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+              <span style={{ fontSize: 18, fontWeight: 800, color: "#4285F4" }}>G</span>
+              <div style={{ flex: 1, border: "1.5px solid #ddd", borderRadius: 22, padding: "8px 14px", fontSize: 11.5, color: E.ink, boxShadow: "0 1px 6px rgba(0,0,0,.1)" }}>business class dubai london march 2026 price</div>
+            </div>
+
+            <div style={{ background: `linear-gradient(135deg, ${E.goldSoft}, #fff)`, border: `2px solid ${E.gold}55`, borderRadius: 10, padding: "14px 14px 12px", marginBottom: 10, position: "relative", boxShadow: `0 4px 18px ${E.goldGlow}` }}>
+              <div style={{ position: "absolute", top: -9, left: 12, fontSize: 8, background: E.gold, color: E.charcoal, padding: "2px 9px", borderRadius: 5, fontFamily: "JBM", fontWeight: 700, letterSpacing: .5 }}>⚡ VOYAGERAI RLSA · WON TOP SLOT · +70% BID MODIFIER</div>
+              <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginTop: 4 }}>
+                <div style={{ width: 30, height: 30, background: E.red, borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0 }}>✈</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 2 }}>
+                    <span style={{ fontSize: 7.5, background: "#5C0069", color: "#fff", padding: "2px 6px", borderRadius: 4, fontWeight: 700, fontFamily: "JBM" }}>SPONSORED</span>
+                    <span style={{ fontSize: 8, color: E.green, fontFamily: "JBM", fontWeight: 700 }}>● Personalised for you · Skywards member</span>
+                  </div>
+                  <div style={{ fontSize: 14, color: "#1A0DAB", fontWeight: 700, marginTop: 4 }}>Aisha — Your DXB→LHR Business Class for 14 March</div>
+                  <div style={{ fontSize: 10.5, color: "#006621", marginTop: 1 }}>emirates.com/skywards/exclusive · Skywards member rate</div>
+                  <div style={{ fontSize: 11, color: E.slate, marginTop: 4, lineHeight: 1.5 }}>EK007 · 14 March · Lie-flat overnight · Halal gourmet · Chauffeur · Lounge · From <strong>AED 18,500</strong> · <strong style={{ color: E.goldDark }}>Hold this fare →</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ padding: "8px 0", borderBottom: `1px solid ${E.mist}`, opacity: .6 }}>
+              <span style={{ fontSize: 7.5, background: "#5C0069", color: "#fff", padding: "2px 7px", borderRadius: 4, fontWeight: 700, fontFamily: "JBM" }}>SPONSORED</span>
+              <div style={{ fontSize: 12, color: "#1A0DAB", fontWeight: 600, marginTop: 4 }}>Qatar Airways Qsuites — Dubai to London</div>
+              <div style={{ fontSize: 10, color: "#006621" }}>qatarairways.com</div>
+              <div style={{ fontSize: 10, color: E.mid, marginTop: 2 }}>Generic Business Class offer · No personal context</div>
+            </div>
+            <div style={{ padding: "8px 0", borderBottom: `1px solid ${E.mist}`, opacity: .6 }}>
+              <span style={{ fontSize: 7.5, background: "#5C0069", color: "#fff", padding: "2px 7px", borderRadius: 4, fontWeight: 700, fontFamily: "JBM" }}>SPONSORED</span>
+              <div style={{ fontSize: 12, color: "#1A0DAB", fontWeight: 600, marginTop: 4 }}>Etihad Business Studio · Dubai to Heathrow</div>
+              <div style={{ fontSize: 10, color: "#006621" }}>etihad.com</div>
+              <div style={{ fontSize: 10, color: E.mid, marginTop: 2 }}>Generic Business cabin offer · No personal context</div>
+            </div>
+
+            <div style={{ marginTop: 10, padding: "8px 12px", background: E.greenSoft, borderRadius: 8, border: `1px solid ${E.green}30` }}>
+              <div style={{ fontSize: 9.5, fontFamily: "JBM", color: E.green, fontWeight: 700 }}>✅ Aisha clicks the Emirates ad · CTR 12.4% vs 0.8% on generic ads · Lands on tailored offer page · Identity already restored</div>
+            </div>
+          </div>
+        </Chrome>
+      </div>
+
+      <div style={{ marginBottom: 14 }}>
+        <div style={{ fontSize: 10, fontFamily: "JBM", color: E.mid, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 6 }}>Day 2 · 1:18 PM · LinkedIn — Lunchtime scroll</div>
+        <Chrome url="https://www.linkedin.com/feed/">
+          <div style={{ background: "#F3F2EF", padding: "14px 16px" }}>
+            <div style={{ background: "#fff", borderRadius: 10, border: "1px solid #DDD", overflow: "hidden", marginBottom: 8 }}>
+              <div style={{ padding: "10px 14px 8px", display: "flex", gap: 10, alignItems: "center" }}>
+                <div style={{ width: 36, height: 36, borderRadius: 4, background: E.red, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>✈</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 11.5, fontWeight: 700, color: E.ink }}>Emirates · Following</div>
+                  <div style={{ fontSize: 9.5, color: E.mid }}>2,481,332 followers · <span style={{ color: "#0073B1", fontWeight: 600 }}>Promoted</span></div>
+                  <div style={{ fontSize: 9, color: E.pale }}>Day 2 · 1:18 PM</div>
+                </div>
+              </div>
+              <div style={{ padding: "0 14px 12px", fontSize: 11.5, color: E.ink, lineHeight: 1.6 }}>For partners and senior counsel flying DXB→LHR for client meetings: <strong>arrive ready, not wrecked</strong>. Business Class on the overnight EK007. Lie-flat. Halal gourmet. Chauffeur both ends. Land at 6:45 AM, take your meeting at 9.</div>
+              <div style={{ background: `linear-gradient(160deg, ${E.charcoal}, ${E.redDark})`, padding: "26px 22px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div>
+                  <div style={{ fontSize: 8, fontFamily: "JBM", color: E.goldLight, letterSpacing: 2, textTransform: "uppercase" }}>Emirates · Business Class</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, fontFamily: "Cinzel, serif", color: E.white, marginTop: 4 }}>Lead the room.</div>
+                  <div style={{ fontSize: 10.5, color: E.goldLight, marginTop: 2 }}>DXB → LHR · Lie-flat overnight</div>
+                </div>
+                <div style={{ fontSize: 36 }}>🛏️</div>
+              </div>
+              <div style={{ padding: "10px 14px", display: "flex", gap: 12, fontSize: 11, color: E.mid, borderTop: "1px solid #EEE" }}>
+                <span>👍 Like</span>
+                <span>💬 Comment</span>
+                <span>🔁 Repost</span>
+                <span style={{ marginLeft: "auto", color: "#0073B1", fontWeight: 600 }}>Learn more →</span>
+              </div>
+            </div>
+            <div style={{ padding: "8px 12px", background: "#E8F3FF", borderRadius: 8, border: "1px solid #0073B130" }}>
+              <div style={{ fontSize: 9, fontFamily: "JBM", color: "#0073B1", fontWeight: 700 }}>⚡ Targeting: ek_corp_upgrade_dxb_lhr_highltv audience · Existing customers excluded · Served only to identified high-LTV economy loyalists like Aisha</div>
+            </div>
+          </div>
+        </Chrome>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 14 }}>
+        {[["+70% bid won", "Personalised ad takes top SERP placement on her search", E.green], ["12.4% CTR", "vs 0.8% on generic competitor ads · 15× lift", E.gold], ["+340% recall", "Multi-touch reinforcement raises Day 3 email open propensity", E.purple]].map(([v, d, c]) => (
+          <div key={v} style={{ background: `${c}10`, border: `1.5px solid ${c}30`, borderRadius: 12, padding: 14, textAlign: "center" }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: c, fontFamily: "Cinzel, serif", marginBottom: 5 }}>{v}</div>
+            <div style={{ fontSize: 10, color: E.mid }}>{d}</div>
+          </div>
+        ))}
+      </div>
+
+      <InfoBox icon="💡" title="Why this is the moment that matters" color={E.gold}
+        body="Step 6 was about activating the audiences. Step 9 is where they earn their keep. Aisha sees Emirates exactly when she's open to seeing them — searching for fares again, scrolling LinkedIn at lunch — with copy that knows who she is and what she wants. By the time the Day 3 email arrives, she's already had 2 brand-positive impressions. The conversion path is being paved." />
+
+      <Btn onClick={onNext} style={{ marginTop: 12 }}>Day 3: Personalised Email →</Btn>
     </div>
   );
 }
@@ -1007,8 +1135,9 @@ export default function App() {
   const pages = [
     <S1 onNext={next} add={add} />, <S2 onNext={next} add={add} />, <S3 onNext={next} add={add} />,
     <S4 onNext={next} add={add} />, <S5 onNext={next} add={add} />, <S6 onNext={next} add={add} />,
-    <S7 onNext={next} add={add} />, <S8 onNext={next} add={add} />, <S9 onNext={next} add={add} />,
-    <S10 onNext={next} add={add} />, <S11 onNext={next} add={add} />, <S12 add={add} />,
+    <S7 onNext={next} add={add} />, <S8 onNext={next} add={add} />, <SRLSA onNext={next} add={add} />,
+    <S9 onNext={next} add={add} />, <S10 onNext={next} add={add} />, <S11 onNext={next} add={add} />,
+    <S12 add={add} />,
   ];
   return (
     <div style={{ fontFamily: "Outfit, sans-serif", background: E.snow, minHeight: "100vh", color: E.ink }}>
